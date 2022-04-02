@@ -4,17 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Sample
+namespace AddressBook
 {
     class AddrBook
     {
-        static void Main(string[] args)
-        {
-            Sample.AddrBook.GetCustomer();
-            Sample.AddrBook.ListingPeople();
-            Sample.AddrBook.Modify();
-        }
-
         public static List<Person> People = new List<Person>();
         public class Person
         {
@@ -31,29 +24,22 @@ namespace Sample
         public static void GetCustomer()
         {
             Person person = new Person();
-
             Console.Write("Enter First Name: ");
             person.FirstName = Console.ReadLine();
             Console.Write("Enter Last Name: ");
             person.LastName = Console.ReadLine();
-
             Console.Write("Enter Address : ");
             person.Addresses = Console.ReadLine();
-
             Console.Write("Enter City : ");
             person.City = Console.ReadLine();
             Console.Write("Enter State : ");
             person.State = Console.ReadLine();
-
             Console.Write("Enter ZipCode: ");
             person.ZipCode = Console.ReadLine();
-
             Console.Write("Enter Phone Number: ");
             person.PhoneNum = Console.ReadLine();
-
             Console.Write("Enter EmailId: ");
             person.EmailId = Console.ReadLine();
-
             People.Add(person);
         }
         public static void PrintCustomer(Person person)
@@ -123,20 +109,32 @@ namespace Sample
                                     break;
                                 case 8:
                                     return;
-
                             }
-
                         }
-
                     }
                     else
                     {
                         Console.WriteLine("Enter the valid name!");
                     }
-
                 }
 
-
+            }
+        }
+        public static void RemovePeople()
+        {
+            Console.WriteLine("Enter the first name of the person you would like to remove.");
+            string Remove = Console.ReadLine();
+            foreach (var person in People.ToList())
+            {
+                if (person.FirstName.ToUpper() == Remove.ToUpper())
+                {
+                    People.Remove(person);
+                    Console.WriteLine("Contact is deleted");
+                }
+                else
+                {
+                    Console.WriteLine("Contact is not present");
+                }
             }
         }
 
@@ -156,6 +154,5 @@ namespace Sample
             Console.WriteLine("\nPress any key to continue.");
             Console.ReadKey();
         }
-
     }
 }
